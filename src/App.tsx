@@ -1,8 +1,10 @@
-import React from 'react'
+import Router from "./routes/router"
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Router/>
+    </div>
   )
 }
 
