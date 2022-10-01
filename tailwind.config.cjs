@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.html', './src/**/*.{ts, tsx}'],
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   mode: 'jit',
   theme: {
     extend: {
@@ -25,8 +25,5 @@ module.exports = {
       xl: '1700px'
     }
   },
-  plugins: [require('tailwind-scrollbar')],
-  variants: {
-    scrollbar: ['rounded']
-  }
+  plugins: []
 };

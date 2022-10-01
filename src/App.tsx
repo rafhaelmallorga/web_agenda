@@ -1,8 +1,9 @@
 import Router from "./routes/router"
+import style from "./style"
 
 const App = () => {
   return (
-    <div>
+    <div className={`${style.flexCenter}`}>
       <Router/>
     </div>
   )
