@@ -26,10 +26,10 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             setIsLoggedIn(true)
             return navigate("/")
         })
-        .catch((_) => toast.error("E-mail ou senha invalido!"))
+        .catch((_) => toast.error("E-mail ou senha invalidos!"))
     }
 
-    const register = async (data: IUserRegister) => {
+    const registerUser = async (data: IUserRegister) => {
         const loginData = {
             email: data.email,
             password: data.password
@@ -40,12 +40,18 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             toast.success("Usuário criado com sucesso!")
             login(loginData)
         })
-        .catch((_) => toast.error("Não foi possivel realizar o cadastro."))
+        .catch((res) => {
+            if (res.response.data.message === "E-mail already exists!") {
+                return toast.error("E-mail já cadastrado.")
+            }
+            return toast.error("Não foi possivel realizar o cadastro.")
+        
+        })
     }
 
 
     return (
-        <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, login, register}}>
+        <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, login, registerUser}}>
             {children}
         </UserContext.Provider>
     )

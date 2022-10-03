@@ -7,12 +7,13 @@ export interface IUserRegister {
     last_name: string;
     email: string;
     password: string;
+    passwordConfirmation?: string;
 }
 export interface UserContextInterface {
     isLoggedIn: any;
     setIsLoggedIn: any
     login: (data: IUserLogin) => Promise<void>
-    register: (data: IUserRegister) => Promise<void>
+    registerUser: (data: IUserRegister) => Promise<void>
 }
 export interface UserProviderProps {
     children: React.ReactNode
