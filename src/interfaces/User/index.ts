@@ -9,9 +9,17 @@ export interface IUserRegister {
     password: string;
     passwordConfirmation?: string;
 }
+export interface IUserInfos {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+}
 export interface UserContextInterface {
     isLoggedIn: any;
-    setIsLoggedIn: any
+    setIsLoggedIn: any;
+    userInfos: any;
+    setUserInfos: any;
     login: (data: IUserLogin) => Promise<void>
     registerUser: (data: IUserRegister) => Promise<void>
 }

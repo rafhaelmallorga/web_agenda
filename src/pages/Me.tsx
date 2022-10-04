@@ -1,14 +1,12 @@
 import React from 'react'
 import Header from '../components/Header'
-import PageBody from '../components/PageBody'
 
-const Home = () => {
+const Me = () => {
   return (
     <div className='w-full h-[100vh]'>
-      <Header />
-      <PageBody />
+        <Header />
     </div>
   )
 }
 
-export default Home
+export default Me
