@@ -12,14 +12,24 @@ export const AgendaProvider = ({children}: AgendaProviderProps) => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            api.get("/clients")
-                .then(res => setClientsList(res.data))
-                .catch((_) => toast.error('Não foi possivel acessar a lista de clientes.'))
+            getClientList()
         }
     }, [isLoggedIn])
 
+    const getClientList = async () => {
+        api.get("/clients")
+                .then(res => setClientsList(res.data))
+                .catch((_) => toast.error('Não foi possivel acessar a lista de clientes.'))
+    }
+
+    const newClient = async (data: IClient) => {
+        await api.post("/clients", data)
+            .then(res => toast.success('Cliente cadastrado com sucesso.'))
+            .catch((_) => toast.error('Não foi possivel criar o cliente no momento.'))
+    }
+
     return (
-        <AgendaContext.Provider value={{clientsList, setClientsList}}>
+        <AgendaContext.Provider value={{clientsList, setClientsList, newClient, getClientList}}>
             {children}
         </AgendaContext.Provider>
     )

@@ -10,6 +10,8 @@ export interface IClient {
 export interface AgendaContextInterface {
     clientsList: any; 
     setClientsList: any;
+    newClient: (data: IClient) => Promise<void>
+    getClientList: () => Promise<void>
 }
 export interface AgendaProviderProps {
     children: React.ReactNode
