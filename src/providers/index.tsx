@@ -1,4 +1,5 @@
 import React from "react";
+import { AgendaProvider } from "./agenda";
 import { ModalProvider } from "./modal";
 import { UserProvider } from "./user";
 
@@ -10,7 +11,9 @@ const Providers = ({ children }: AppProvider) => {
     return (
         <UserProvider>
             <ModalProvider>
-                {children}
+                <AgendaProvider>
+                    {children}
+                </AgendaProvider>
             </ModalProvider>
         </UserProvider>
     );
