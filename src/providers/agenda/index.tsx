@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import api from "../../api";
-import { AgendaContextInterface, AgendaProviderProps, IClient, IClientUpdate, IId } from "../../interfaces/Agenda";
+import { AgendaContextInterface, AgendaProviderProps, IClient, IClientUpdate, IContact, IContactUpdate, IId } from "../../interfaces/Agenda";
 import { useUser } from "../user";
 
 export const AgendaContext = createContext<AgendaContextInterface>({} as AgendaContextInterface)
@@ -40,8 +40,26 @@ export const AgendaProvider = ({children}: AgendaProviderProps) => {
             .catch((_) => toast.error("Não foi possivel deletar o cliente."))
         }
 
+    const newContact = async (id: string, data: IContact) => {
+        await api.post(`/contacts/${id}`, data)
+            .then((_) => toast.success("Contato criado com sucesso."))
+            .catch((_) => toast.error('Não foi possivel criar um novo contato.'))
+    }
+
+    const updateContact = async (id: string, data: IContactUpdate) => {
+        await api.patch(`/contacts/info/${id}`, data)
+            .then((_) => toast.success('Contato atualizado com sucesso.'))
+            .catch((_) => toast.error('Não foi possivel atualizar o contato.'))
+    }
+
+    const deleteContact = async (id: string) => {
+        await api.delete(`/contacts/info/${id}`)
+            .then(res => toast.success('Contato deletado com sucesso.'))
+            .catch((_) => toast.error('Não foi possivel deletar o contato.'))
+    }
+
     return (
-        <AgendaContext.Provider value={{clientsList, setClientsList, newClient, getClientList, updateClient, deleteCLient}}>
+        <AgendaContext.Provider value={{clientsList, setClientsList, newClient, getClientList, updateClient, deleteCLient, newContact, updateContact, deleteContact}}>
             {children}
         </AgendaContext.Provider>
     )

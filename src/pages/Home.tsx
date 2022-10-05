@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ButtonForm from '../components/ButtonForm'
 import ClientCard from '../components/ClientCard'
+import ContactsSection from '../components/ContactsSection'
 import DeleteClientModal from '../components/DeleteClientModal'
 import EmptyPage from '../components/EmptyPage'
 import Header from '../components/Header'
@@ -18,7 +19,7 @@ import { useUser } from '../providers/user'
 const Home = () => {
   const { isLoggedIn } = useUser()
   const { clientsList } = useAgenda()
-  const { modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, modalUpdateClient, setModalUpdateClient } = useModal()
+  const { modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection } = useModal()
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -51,6 +52,9 @@ const Home = () => {
       </ModalBackground>
       <ModalBackground modalIsOpen={modalUpdateClient}>
               <UpdateClientModal />
+      </ModalBackground>
+      <ModalBackground modalIsOpen={modalContactSection}>
+              <ContactsSection />
       </ModalBackground>
     </div>
   )

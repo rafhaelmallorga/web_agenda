@@ -1,4 +1,6 @@
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import api from "../../api";
+import { IClient } from "../../interfaces/Agenda";
 
 export interface ModalContextInterface {
     modalDeleteUserIsOpen: any;
@@ -13,6 +15,10 @@ export interface ModalContextInterface {
     setClientHandler: any;
     modalUpdateClient: any;
     setModalUpdateClient: any;
+    modalContactSection:any;
+    setModalContactSection: any;
+    contactsByClientHandler: any;
+    setContactsByClientHandler: any;
 }
 
 export interface ModalProviderProps {
@@ -27,11 +33,14 @@ export const ModalProvider = ({children}: ModalProviderProps) => {
     const [modalNewClientIsOpen, setModalNewClientIsOpen] = useState(false)
     const [modalDeleteClient, setModalDeleteClient] = useState(false)
     const [modalUpdateClient, setModalUpdateClient] = useState(false)
+    const [modalContactSection, setModalContactSection] = useState(false)
 
-    const [clientHandler, setClientHandler] = useState()
+    const [clientHandler, setClientHandler] = useState<IClient>()
+    const [contactsByClientHandler, setContactsByClientHandler] = useState([])
+
 
     return (
-        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient}}>
+        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection, contactsByClientHandler, setContactsByClientHandler}}>
             {children}
         </ModalContext.Provider>
     )
