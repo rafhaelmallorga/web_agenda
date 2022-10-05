@@ -12,6 +12,23 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     const [userInfos, setUserInfos] = useState<IUserInfos>({} as IUserInfos)
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem("@BearerToken") || '{}')
+
+        if (token.token) {
+            api.defaults.headers.common = {
+                Authorization: `Bearer ${token.token}`
+            }
+        api.get('/user/me')
+            .then(res => setUserInfos(res.data))
+            .catch((_) => {
+                toast.error('Não foi possivel acessar as informações do usuario.')
+                navigate("/login")
+            })
+        return setIsLoggedIn(true)
+        }
+    }, [])
     
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem("@BearerToken") || '{}')
@@ -22,8 +39,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             return setIsLoggedIn(true)
         }
     }, [isLoggedIn])
-
-    console.log(userInfos)
 
     const login = async (data: IUserLogin) => {
         await api.post('/user/login', data)
@@ -58,9 +73,29 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         })
     }
 
+    const deleteUser = async () => {
+        api.delete("/user/me")
+            .then(res => {
+                toast.success("Usuário deletado com sucesso.")
+                setIsLoggedIn(false)
+                localStorage.clear()
+                navigate("/login")
+            })
+            .catch(err => toast.error("Não foi possivel deletar sua conta no momento."))
+    }
+
+    const updateUser = async (data: IUserInfos) => {
+        await api.patch("/user/me", data)
+            .then(res => {
+                setUserInfos(res.data)
+                toast.success("Usuário atualizado com sucesso.")          
+            })
+            .catch(err => toast.error("Não foi possivel atualizar seus dados no momento."))
+    }
+
 
     return (
-        <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, login, registerUser, userInfos, setUserInfos}}>
+        <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, login, registerUser, userInfos, setUserInfos, deleteUser, updateUser}}>
             {children}
         </UserContext.Provider>
     )

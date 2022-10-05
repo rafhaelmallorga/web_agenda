@@ -22,6 +22,8 @@ export interface UserContextInterface {
     setUserInfos: any;
     login: (data: IUserLogin) => Promise<void>
     registerUser: (data: IUserRegister) => Promise<void>
+    deleteUser: () => Promise<void>
+    updateUser: (data: IUserInfos) => Promise<void>
 }
 export interface UserProviderProps {
     children: React.ReactNode

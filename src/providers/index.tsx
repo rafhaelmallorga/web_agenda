@@ -1,4 +1,5 @@
 import React from "react";
+import { ModalProvider } from "./modal";
 import { UserProvider } from "./user";
 
 interface AppProvider {
@@ -7,7 +8,11 @@ interface AppProvider {
 
 const Providers = ({ children }: AppProvider) => {
     return (
-        <UserProvider>{children}</UserProvider>
+        <UserProvider>
+            <ModalProvider>
+                {children}
+            </ModalProvider>
+        </UserProvider>
     );
 };
 
