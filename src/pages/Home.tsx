@@ -9,6 +9,7 @@ import InputForm from '../components/InputForm'
 import ModalBackground from '../components/ModalBackground'
 import NewClientModal from '../components/NewClientModal'
 import PageBody from '../components/PageBody'
+import UpdateClientModal from '../components/UpdateClientModal'
 import { IClient } from '../interfaces/Agenda'
 import { useAgenda } from '../providers/agenda'
 import { useModal } from '../providers/modal'
@@ -17,13 +18,14 @@ import { useUser } from '../providers/user'
 const Home = () => {
   const { isLoggedIn } = useUser()
   const { clientsList } = useAgenda()
-  const { modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient } = useModal()
+  const { modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, modalUpdateClient, setModalUpdateClient } = useModal()
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const token = JSON.parse(localStorage.getItem("@BearerToken") || '{}')
+    if (!token.token) {
       navigate("/login")
     }
   }, [])
@@ -46,6 +48,9 @@ const Home = () => {
       </ModalBackground>
       <ModalBackground modalIsOpen={modalDeleteClient}>
               <DeleteClientModal />
+      </ModalBackground>
+      <ModalBackground modalIsOpen={modalUpdateClient}>
+              <UpdateClientModal />
       </ModalBackground>
     </div>
   )

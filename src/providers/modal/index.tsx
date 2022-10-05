@@ -11,6 +11,8 @@ export interface ModalContextInterface {
     setModalDeleteClient: any;
     clientHandler: any;
     setClientHandler: any;
+    modalUpdateClient: any;
+    setModalUpdateClient: any;
 }
 
 export interface ModalProviderProps {
@@ -24,11 +26,12 @@ export const ModalProvider = ({children}: ModalProviderProps) => {
     const [modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen] = useState(false)
     const [modalNewClientIsOpen, setModalNewClientIsOpen] = useState(false)
     const [modalDeleteClient, setModalDeleteClient] = useState(false)
+    const [modalUpdateClient, setModalUpdateClient] = useState(false)
 
     const [clientHandler, setClientHandler] = useState()
 
     return (
-        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler}}>
+        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient}}>
             {children}
         </ModalContext.Provider>
     )

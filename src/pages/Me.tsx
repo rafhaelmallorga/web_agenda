@@ -16,7 +16,8 @@ const Me = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const token = JSON.parse(localStorage.getItem("@BearerToken") || '{}')
+    if (!token.token) {
       navigate("/login")
     }
   }, [])

@@ -12,7 +12,7 @@ interface client {
 
 const ClientCard = ({client}: client) => {
     const { updateClient, deleteCLient, getClientList } = useAgenda()
-    const { setModalDeleteClient, clientHandler, setClientHandler } = useModal()
+    const { setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient } = useModal()
 
     const handleDelete = async (id: string) => {
         await deleteCLient(id)
@@ -38,7 +38,10 @@ const ClientCard = ({client}: client) => {
         <div className='flex-2 h-full p-6 flex flex-col justify-between items-end'>
             <p className='mb-4 font-bold'><span>0</span> contatos</p>
             <button value={client.id} className='w-[131px] bg-[#755FFF] px-4 py-1 text-white font-bold rounded hover:brightness-90'>Contatos</button>
-            <button value={client.id} className='w-[131px] border-2 border-[#755FFF] px-4 py-1 text-[#755FFF] font-bold rounded hover:bg-slate-100'>Atualizar</button>
+            <button value={client.id} onClick={() => {
+                setModalUpdateClient(true)
+                setClientHandler(client)
+            }} className='w-[131px] border-2 border-[#755FFF] px-4 py-1 text-[#755FFF] font-bold rounded hover:bg-slate-100'>Atualizar</button>
             <button value={client.id} onClick={() => { 
                 setModalDeleteClient(true)
                 setClientHandler(client)
