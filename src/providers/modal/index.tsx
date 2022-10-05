@@ -3,6 +3,8 @@ import { createContext, Dispatch, SetStateAction, useContext, useEffect, useStat
 export interface ModalContextInterface {
     modalDeleteUserIsOpen: any;
     setModalDeleteUserIsOpen: any;
+    modalUpdatePasswordIsOpen: any;
+    setModalUpdatePasswordIsOpen: any;
 }
 
 export interface ModalProviderProps {
@@ -13,9 +15,10 @@ export const ModalContext = createContext<ModalContextInterface>({} as ModalCont
 
 export const ModalProvider = ({children}: ModalProviderProps) => {
     const [modalDeleteUserIsOpen, setModalDeleteUserIsOpen] = useState(false)
+    const [modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen] = useState(false)
 
     return (
-        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen}}>
+        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen}}>
             {children}
         </ModalContext.Provider>
     )

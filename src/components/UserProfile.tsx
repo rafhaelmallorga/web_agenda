@@ -18,7 +18,7 @@ const UserProfile = () => {
     const { userInfos, setUserInfos, updateUser } = useUser()
     const [isLoading, setIsLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const { modalDeleteUserIsOpen, setModalDeleteUserIsOpen } = useModal()
+    const { modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen } = useModal()
     const [updatedInfo, setUpdatedInfo] = useState({...userInfos})
 
     useEffect(()=>{
@@ -75,7 +75,7 @@ const UserProfile = () => {
 
                 <div className='flex justify-between'>
                     <span onClick={() => setModalDeleteUserIsOpen(true)} className='text-red font-bold cursor-pointer'>Excluir conta!</span>
-                    <span className='text-red font-bold cursor-pointer'>Atualizar senha</span>
+                    <span onClick={() => setModalUpdatePasswordIsOpen(true)} className='text-red font-bold cursor-pointer'>Atualizar senha</span>
                 </div>
             </div>
 

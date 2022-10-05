@@ -2,7 +2,7 @@ import { createContext, Dispatch, SetStateAction, useContext, useEffect, useStat
 import api from "../../api"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
-import { IUserInfos, IUserLogin, IUserRegister, UserContextInterface, UserProviderProps } from "../../interfaces/User";
+import { IUserInfos, IUserLogin, IUserRegister, UserContextInterface, UserProviderProps, IUserPassword } from "../../interfaces/User";
 
 
 export const UserContext = createContext<UserContextInterface>({} as UserContextInterface);
@@ -93,9 +93,18 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             .catch(err => toast.error("Não foi possivel atualizar seus dados no momento."))
     }
 
+    const updateUserPassword = async (data: IUserPassword) => {
+        await api.patch("/user/me", data)
+            .then(res => {
+                setUserInfos(res.data)
+                toast.success("Senha atualizada com sucesso.")          
+            })
+            .catch(err => toast.error("Não foi possivel atualizar sua senha no momento."))
+    }
+
 
     return (
-        <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, login, registerUser, userInfos, setUserInfos, deleteUser, updateUser}}>
+        <UserContext.Provider value={{isLoggedIn, setIsLoggedIn, login, registerUser, userInfos, setUserInfos, deleteUser, updateUser, updateUserPassword}}>
             {children}
         </UserContext.Provider>
     )

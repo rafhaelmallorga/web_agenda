@@ -15,6 +15,15 @@ export interface IUserInfos {
     last_name: string;
     email: string;
 }
+
+export interface IUserPasswordForm {
+    password: string;
+    passwordConfirmation?: string;
+}
+
+export interface IUserPassword {
+    password: string;
+}
 export interface UserContextInterface {
     isLoggedIn: any;
     setIsLoggedIn: any;
@@ -24,6 +33,7 @@ export interface UserContextInterface {
     registerUser: (data: IUserRegister) => Promise<void>
     deleteUser: () => Promise<void>
     updateUser: (data: IUserInfos) => Promise<void>
+    updateUserPassword: (data: IUserPassword) => Promise<void>
 }
 export interface UserProviderProps {
     children: React.ReactNode
