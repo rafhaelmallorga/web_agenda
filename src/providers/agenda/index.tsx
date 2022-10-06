@@ -19,7 +19,6 @@ export const AgendaProvider = ({children}: AgendaProviderProps) => {
     const getClientList = async () => {
         api.get("/clients")
                 .then(res => setClientsList(res.data))
-                .catch((_) => toast.error('Não foi possivel acessar a lista de clientes.'))
     }
 
     const newClient = async (data: IClient) => {

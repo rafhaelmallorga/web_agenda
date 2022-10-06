@@ -37,7 +37,7 @@ const Home = () => {
     <div className='w-full h-[100vh]'>
       <Header />
       <PageBody>
-        <div className={`w-full h-[90%] max-h-[80%] max-w-[1200px] border-2 rounded-md p-2 shadow-inner ${clientsList.length > 0 ? "grid grid-cols-1 md:grid-cols-2 gap-1 xs:gap-4 pr-3" : "flex justify-center items-center h-[90%]"}  overflow-x-hidden scrollbar-thin scrollbar-track- scrollbar-thumb-rounded scrollbar-thumb-[#745fff2f] scrollbar-track-gray-100`}>
+        <div className={`w-full max-w-[1200px] border-2 rounded-md sm:p-2 shadow-inner ${clientsList.length > 0 ? "grid grid-cols-1 md:grid-cols-2 gap-1 xs:gap-4 pr-2" : "flex justify-center items-center h-[90%]"}  overflow-x-hidden scrollbar-thin scrollbar-track- scrollbar-thumb-rounded scrollbar-thumb-[#745fff2f] scrollbar-track-gray-100`}>
               {clientsList.length > 0 ? 
               clientsList.map((client: IClient) => (<ClientCard key={client.id} client={client}/>))
               :
