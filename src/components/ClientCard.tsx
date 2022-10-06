@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HiOutlineOfficeBuilding } from "react-icons/hi"
 import {  MdOutlineLocalPostOffice } from "react-icons/md"
 import { BsTelephone } from "react-icons/bs"
@@ -14,10 +14,9 @@ const ClientCard = ({client}: client) => {
     const { updateClient, deleteCLient, getClientList } = useAgenda()
     const { setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection } = useModal()
 
-    const handleDelete = async (id: string) => {
-        await deleteCLient(id)
-        await getClientList()
-    }
+    useEffect(()=>{
+
+    },[])
 
   return (
     <div className='flex justify-center items-center h-[210px] border-2 border-l-4 border-l-[#755FFF] bg-white rounded-[5px] drop-shadow-lg hover:drop-shadow-xl'>
@@ -36,7 +35,7 @@ const ClientCard = ({client}: client) => {
             </div>
         </div>
         <div className='flex-2 h-full p-6 flex flex-col justify-between items-end'>
-            <p className='mb-4 font-bold'><span>0</span> contatos</p>
+            <div className='flex-1'/>
             <button value={client.id} onClick={() => {
                 setModalContactSection(true)
                 setClientHandler(client)
@@ -44,11 +43,11 @@ const ClientCard = ({client}: client) => {
             <button value={client.id} onClick={() => {
                 setModalUpdateClient(true)
                 setClientHandler(client)
-            }} className='w-[131px] border-2 border-[#755FFF] px-4 py-1 text-[#755FFF] font-bold rounded hover:bg-slate-100'>Atualizar</button>
+            }} className='w-[131px] border-2 border-[#755FFF] mt-1 px-4 py-1 text-[#755FFF] font-bold rounded hover:bg-slate-100'>Atualizar</button>
             <button value={client.id} onClick={() => { 
                 setModalDeleteClient(true)
                 setClientHandler(client)
-                }} className='w-[131px] border-2 border-red px-4 py-1 text-red font-bold rounded hover:bg-slate-100'>Deletar</button>
+                }} className='w-[131px] border-2 border-red mt-1 px-4 py-1 text-red font-bold rounded hover:bg-slate-100'>Deletar</button>
         </div>
     </div>
   )

@@ -6,7 +6,7 @@ import { useAgenda } from '../providers/agenda'
 import { useModal } from '../providers/modal'
 
 const ContactCard = ({contact}: any) => {
-    const { setContactsByClientHandler } = useModal()
+    const { setContactsByClientHandler, setModalUpdateContact, setContactHandler } = useModal()
     const { deleteContact } = useAgenda()
 
     const getContactsList = async (id: string) => {
@@ -35,7 +35,10 @@ const ContactCard = ({contact}: any) => {
             </div>
         </div>
         <div className='flex flex-col justify-between'>
-            <span className='text-[#755FFF] hover:cursor-pointer'>
+            <span onClick={() => {
+                setContactHandler(contact)
+                setModalUpdateContact(true)
+                }} className='text-[#755FFF] hover:cursor-pointer'>
                 <BsThreeDots />
             </span>
             <span onClick={() => handleDelete(contact.id)} className='text-red hover:cursor-pointer'>

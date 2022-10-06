@@ -23,6 +23,8 @@ export interface ModalContextInterface {
     setModalNewContact: any;
     contactHandler: any; 
     setContactHandler: any;
+    modalUpdateContact: any;
+    setModalUpdateContact: any;
 }
 
 export interface ModalProviderProps {
@@ -39,6 +41,7 @@ export const ModalProvider = ({children}: ModalProviderProps) => {
     const [modalUpdateClient, setModalUpdateClient] = useState(false)
     const [modalContactSection, setModalContactSection] = useState(false)
     const [modalNewContact, setModalNewContact] = useState(false)
+    const [modalUpdateContact, setModalUpdateContact] = useState(false)
 
     const [clientHandler, setClientHandler] = useState<IClient>()
     const [contactsByClientHandler, setContactsByClientHandler] = useState([])
@@ -46,7 +49,7 @@ export const ModalProvider = ({children}: ModalProviderProps) => {
 
 
     return (
-        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection, contactsByClientHandler, setContactsByClientHandler, modalNewContact, setModalNewContact, contactHandler, setContactHandler}}>
+        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection, contactsByClientHandler, setContactsByClientHandler, modalNewContact, setModalNewContact, contactHandler, setContactHandler, modalUpdateContact, setModalUpdateContact}}>
             {children}
         </ModalContext.Provider>
     )

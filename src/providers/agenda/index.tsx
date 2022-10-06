@@ -37,7 +37,7 @@ export const AgendaProvider = ({children}: AgendaProviderProps) => {
     const deleteCLient = async (id: string) => {
         await api.delete(`/clients/${id}`)
             .then(res => toast.success("Cliente deletado com sucesso."))
-            .catch((_) => toast.error("Não foi possivel deletar o cliente."))
+            .catch((_) => toast.error("Não foi possivel deletar o cliente pois há contatos cadastrados."))
         }
 
     const newContact = async (id: string, data: IContact) => {
