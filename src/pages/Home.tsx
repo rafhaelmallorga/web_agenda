@@ -9,6 +9,7 @@ import Header from '../components/Header'
 import InputForm from '../components/InputForm'
 import ModalBackground from '../components/ModalBackground'
 import NewClientModal from '../components/NewClientModal'
+import NewContactSection from '../components/NewContactSection'
 import PageBody from '../components/PageBody'
 import UpdateClientModal from '../components/UpdateClientModal'
 import { IClient } from '../interfaces/Agenda'
@@ -19,7 +20,7 @@ import { useUser } from '../providers/user'
 const Home = () => {
   const { isLoggedIn } = useUser()
   const { clientsList } = useAgenda()
-  const { modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection } = useModal()
+  const { modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection, modalNewContact, setModalNewContact } = useModal()
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -55,6 +56,9 @@ const Home = () => {
       </ModalBackground>
       <ModalBackground modalIsOpen={modalContactSection}>
               <ContactsSection />
+      </ModalBackground>
+      <ModalBackground modalIsOpen={modalNewContact}>
+              <NewContactSection />
       </ModalBackground>
     </div>
   )

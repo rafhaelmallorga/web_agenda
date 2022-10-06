@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import api from "../../api";
-import { IClient } from "../../interfaces/Agenda";
+import { IClient, IContact } from "../../interfaces/Agenda";
 
 export interface ModalContextInterface {
     modalDeleteUserIsOpen: any;
@@ -19,6 +19,10 @@ export interface ModalContextInterface {
     setModalContactSection: any;
     contactsByClientHandler: any;
     setContactsByClientHandler: any;
+    modalNewContact: any; 
+    setModalNewContact: any;
+    contactHandler: any; 
+    setContactHandler: any;
 }
 
 export interface ModalProviderProps {
@@ -34,13 +38,15 @@ export const ModalProvider = ({children}: ModalProviderProps) => {
     const [modalDeleteClient, setModalDeleteClient] = useState(false)
     const [modalUpdateClient, setModalUpdateClient] = useState(false)
     const [modalContactSection, setModalContactSection] = useState(false)
+    const [modalNewContact, setModalNewContact] = useState(false)
 
     const [clientHandler, setClientHandler] = useState<IClient>()
     const [contactsByClientHandler, setContactsByClientHandler] = useState([])
+    const [contactHandler, setContactHandler] = useState<IContact>()
 
 
     return (
-        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection, contactsByClientHandler, setContactsByClientHandler}}>
+        <ModalContext.Provider value={{modalDeleteUserIsOpen, setModalDeleteUserIsOpen, modalUpdatePasswordIsOpen, setModalUpdatePasswordIsOpen, modalNewClientIsOpen, setModalNewClientIsOpen, modalDeleteClient, setModalDeleteClient, clientHandler, setClientHandler, modalUpdateClient, setModalUpdateClient, modalContactSection, setModalContactSection, contactsByClientHandler, setContactsByClientHandler, modalNewContact, setModalNewContact, contactHandler, setContactHandler}}>
             {children}
         </ModalContext.Provider>
     )

@@ -21,22 +21,30 @@ const NewClientModal = () => {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors }
 } = useForm<IClient>({
     resolver: yupResolver(schema)
 })
 
-    const handleLogin = async (data: IClient) => {
+    const handleNewClient = async (data: IClient) => {
         setIsLoading(true)
         await newClient(data)
         await getClientList()
         setIsLoading(false)
+
+        reset({
+          full_name: '',
+          email: '',
+          phone: ''
+        })
+
         setModalNewClientIsOpen(false)
     }
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)} className='flex flex-col bg-white p-8 rounded-md'>
+    <form onSubmit={handleSubmit(handleNewClient)} className='flex flex-col bg-white p-8 rounded-md'>
     <h3 className='text-[28px] font-bold text-gray-600'>Cadastrar Cliente</h3>
     <InputForm placeholder='Nome da empresa' name='full_name' error={errors} register={register}/>
     <InputForm placeholder='E-mail' name='email' error={errors} register={register}/>

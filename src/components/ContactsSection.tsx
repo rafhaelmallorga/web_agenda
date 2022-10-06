@@ -7,7 +7,7 @@ import ContactCard from './ContactCard'
 import { IContact } from '../interfaces/Agenda'
 
 const ContactsSection = () => {
-    const {modalContactSection, setModalContactSection, clientHandler, setClientHandler, contactsByClientHandler, setContactsByClientHandler} = useModal()
+    const {modalContactSection, setModalContactSection, clientHandler, setClientHandler, contactsByClientHandler, setContactsByClientHandler, modalNewContact, setModalNewContact, contactHandler, setContactHandler} = useModal()
 
 
     const getContactsList = async (id: string) => {
@@ -23,16 +23,16 @@ const ContactsSection = () => {
         }
     }, [clientHandler])
 
-    console.log(contactsByClientHandler)
-
   return (
     <div className='bg-white w-[400px] h-[600px] rounded-md p-8'>
         <span className='flex justify-end'>
-            <AiOutlineCloseCircle onClick={() => setModalContactSection(false)} className='relative bottom-4 left-4 text-[24px] text-gray-500 hover:cursor-pointer'/>
+            <AiOutlineCloseCircle onClick={() => {
+                setModalContactSection(false)
+                }} className='relative bottom-4 left-4 text-[24px] text-gray-500 hover:cursor-pointer'/>
         </span>
         <h3 className='text-gray-700 text-[14px]'>Lista de contatos: <span className='font-bold text-[16px]'><br/>{clientHandler?.full_name}</span></h3>
         <div className='flex justify-end my-2'>
-            <button className='flex justify-center items-center bg-[#755FFF] text-white font-bold py-1 px-4 hover:brightness-90'>
+            <button onClick={() => setModalNewContact(true)} className='flex justify-center items-center bg-[#755FFF] text-white font-bold py-1 px-4 hover:brightness-90'>
                 <span className='pr-2 relative bottom-[1px]'>
                     <IoMdPersonAdd/>
                 </span>

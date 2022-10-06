@@ -23,6 +23,7 @@ export interface IUserPasswordForm {
 
 export interface IUserPassword {
     password: string;
+    passwordConfirmation?: string;
 }
 export interface UserContextInterface {
     isLoggedIn: any;

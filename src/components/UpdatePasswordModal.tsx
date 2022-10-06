@@ -33,6 +33,7 @@ const UpdatePasswordModal = () => {
 
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors }
     } = useForm<IUserPassword>({
@@ -44,6 +45,12 @@ const UpdatePasswordModal = () => {
         setIsLoading(true)
         await updateUserPassword({password: password})
         setIsLoading(false)
+
+        reset({
+            password: '',
+            passwordConfirmation: ''
+          })
+
         setModalUpdatePasswordIsOpen(false)
     }
 
