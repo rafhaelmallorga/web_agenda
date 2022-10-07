@@ -56,3 +56,5 @@ const ContactsSection = () => {
 }
 
 export default ContactsSection
+
+export {}
